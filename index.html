@@ -179,7 +179,20 @@
           <hr><br/><br/>
 
           <h4>Installation</h4>
-          <p>Tabs that describe how to executet in MAC</p>
+          <div class="tabbable"> <!-- Only required for left/right tabs -->
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab1" data-toggle="tab">UNIX (Linux or Mac)</a></li>
+              <li><a href="#tab2" data-toggle="tab">Windows</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab1">
+                <p>Install on UNIX</p>
+              </div>
+              <div class="tab-pane" id="tab2">
+                <p>Install on Windows</p>
+              </div>
+            </div>
+          </div>
           <hr><br/><br/>
 
           <h4>Execution</h4>

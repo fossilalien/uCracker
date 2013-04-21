@@ -1,4 +1,4 @@
 uCracker
 ========
 
-IOL Cracker has evolved !
+Check me out ! http://farolfo.github.io/uCracker.

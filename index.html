@@ -2,9 +2,7 @@
    "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-  <title>IOL Hacker</title>
+  <title>uCracker</title>
 
   <link rel="icon" type="image/ico" href="img/uCrackerlittle.png">
 
@@ -87,15 +85,16 @@
           <a class="brand" href="#">uCracker</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#about">About</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#getStarted">Get started</a></li>
+              <li><a href="#downloads">Downloads</a></li>
               <li><a href="#howItWorks">How it works?</a></li>
-              <li><a href="#howItWorks">Downloads</a></li>
-              <li><a href="#howItWorks">Installation</a></li>
-              <li><a href="#howItWorks">Execution</a></li>
-              <li><a href="#howItWorks">Why did I do this?</a></li>
-              <li><a href="#howItWorks">In the near future...</a></li>
-              <li><a href="#howItWorks">Source code &amp; contributions</a></li>
-              <li><a href="#howItWorks">Further reading</a></li>
+              <li><a href="#installation">Installation</a></li>
+              <li><a href="#execution">Execution</a></li>
+              <li><a href="#whyDidIDoThis">Why did I do this?</a></li>
+              <li><a href="#inTheNearFuture">In the near future...</a></li>
+              <li><a href="#developers">Developers</a></li>
+              <li><a href="#furtherReading">Further reading</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -104,9 +103,9 @@
 	<div class="container-narrow">
 
       <div class="jumbotron">
-        <!--<h1>uCracker</h1>-->
-        <img src="img/uCracker-logo.png"/>
+        <img src="img/uCracker-logo.png" alt="uCracker"/>
         <p class="lead">Now you now why you should change your passwords every so often...</p>
+        <p class="lead">The <strong>u</strong>niversal cracker for web applications</p>
         <a class="btn btn-large btn-success" href="#">Download now!</a>
       </div>
 
@@ -116,42 +115,60 @@
         <div class="row-fluid">
           
           <h4>About</h4>
-          <p>The uCracker is a very simple Java program that <b><a href="#">sniffs</a> the network and displays by console the IDs and passwords</b> of all of those that try to login to <a href="#">some sites</a> in that same network.<br/>
-          It relies on the fact that the text that a common user puts in one of <a href="#">those sites</a>, it is delivered to the network <b>just as it's been written</b>, so I just my listen to the network (sniff) and display a password when it's detected.</p>
+          <p>The uCracker is a very simple Java program that <strong><a href="http://en.wikipedia.org/wiki/Packet_analyzer">sniffs</a> the network and displays by console the IDs and passwords</strong> of all of those that try to login to some sites in that same network.<br/>
+          It relies on the fact that the text that a common user puts in one of those sites, it is delivered to the network <strong>just as it's been written</strong>, so I just listen to the network (sniff) and display a password when it's detected.</p>
           
           <hr id="getStarted"><br/><br/>
           <h4>Get started</h4>
-          <p>Once yo have installed the application, run </p>
-            <div class="container"><span class="span8 offset2"><pre>~$ java -jar uCracker.jar [-i interface] [-l loggingLevel]</pre></span></div>
-          <p>The -i parameter indicates what interface you want to sniff to. We suggest you to spescify one, because if not the program will search for one and there is no guarantee that interface is enabled, or listening passwords.
-
-            If you dont't now what interface to sniff, run the ipconfig (on Windows) or ifconfig (on any UNIX plataform such as Mac or Linux) command on any shell and it will list all of your interfaces. Then choose one.</p>
+          <p>First of all, make sure you have installed Java 5 or better, then, once you have installed the application, run </p>
+            <div class="container"><span class="span8 offset2"><pre>~$ java -jar uCracker.jar [-i interface] [-l loggingLevel] [--itba] [--fuckThemAll]</pre></span></div>
+          <p>The <code>-i</code> parameter indicates what interface you want to sniff. <strong>We suggest you to specify one</strong>, because if not the program will search for one and there is no guarantee that interface is activated, or listening passwords.
+              <br/>
+            If you don't now what interface to sniff, run the <code>ipconfig</code> (on Windows) or <code>ifconfig</code> (on any UNIX platform such as Mac or Linux) command on any shell and it will list all of your interfaces. Then choose one.</p>
             <div class="container"><div class="span10 offset1 alert alert-info">
               <h5>Some tips for choosing an interface:</h5> 
               <ul>
                 <li>If you are on a wireless network, such as WiFi, choose that interface that describes itself as wireless.</li>
-                <li>Choose that interface that is activated.</li>
+                <li>Choose that interface that is activated. (You will get it when you run the command)</li>
               </ul>
-
-                              IMAGE SHOWING IPCONFIG OR IFCONFIG AND CIRCEL ON THOSE THINGS 
-
             </div></div>
 
-            <p>The parameter -l indicates the logging level of the application and we suggest you not to indicated and so default will be taken. The possible values for logging are
+            <p>
+                Now that you know where to sniff, let's do it !
+                The sites we are available to sniff now are the following
+                <div class="container"><div class="span6 offset3">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>web sites</td>
+                            <td>parameter</td>
+                        </tr>
+                        <tr>
+                            <td><a href=#>Instituto Tecnologico de Buenos Aires</a></td>
+                            <td><code>--itba</code></td>
+                        </tr>
+                    </table>
+                </div></div>
+
+                The only thing you have to do is to specify the parameter indicated on the list as it is on the command line described above.
+                <br/>Remember, you can add as many sites as you want ! And for those who want to know everything, you can run it with <code>--fuckThemAll</code>, and this will sniff all the sites available. For example:
+            <div class="container"><span class="span8 offset2"><pre>~$ java -jar uCracker.jar -i en1 --fuckThemAll</pre></span></div>
+            </p>
+
+            <p>At last, but not least, the parameter <code>-l</code> indicates the logging level of the application and <strong>we suggest you not to indicate it</strong> and so the default value will be taken. The possible values for logging are
                 <ul>
-                  <li>TRACE</li>
-                  <li>ERROR (default)</li>
-                  <li>OFF</li>
+                  <li><code>TRACE</code> Logs a very detailed track of what is happening.</li>
+                  <li><code>ERROR</code> (default) Logs when errors happened.</li>
+                  <li><code>OFF</code> Don't log at all.</li>
                 </ul>
             </p>
 
             <p>If everything went well, you will see something like this</p>
             <div class="container"><div class="span8 offset2"><pre>
 ~$ java -jar uCracker.jar --itba --utn --up -i en1
-
+                    ...
             </pre></div></div>
-          
-          <hr><br/><br/>
+            <p>Just keep this running on any terminal of yours and come back later.</p>
+          <hr id="downloads"><br/><br/>
 
           <h4>Downloads</h4>
           <p>Download the latest runnable jar</p>
@@ -169,14 +186,14 @@
             </table>
           </div></div>
 
-          <hr><br/><br/>
+          <hr id="howItWorks"><br/><br/>
 
           <h4>How it works?</h4>
           <p>Detailed explication, showing frameworks, architecture, etc.</p>
 
           <h6><a href="">Show detailed explication</a></h6>
           <div></div>
-          <hr><br/><br/>
+          <hr id="installation"><br/><br/>
 
           <h4>Installation</h4>
           <div class="tabbable"> <!-- Only required for left/right tabs -->
@@ -193,26 +210,26 @@
               </div>
             </div>
           </div>
-          <hr><br/><br/>
+          <hr id="execution"><br/><br/>
 
           <h4>Execution</h4>
           <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-          <hr><br/><br/>
+          <hr id="whyDidIDoThis"><br/><br/>
 
 		      <h4>Why did I do this?</h4>
           <p>What is commign in the next releases</p>
-          <hr><br/><br/>
+          <hr id="inTheNearFuture"><br/><br/>
 
           <h4>In the near future...</h4>
           <p>What is commign in the next releases</p>
-          <hr><br/><br/>
+          <hr id="developers"><br/><br/>
 
-          <h4>Source code and contributions</h4>
+          <h4>Developers</h4>
           <p>What is commign in the next releases</p>
-          <hr><br/><br/>
+          <hr id="furtherReading"><br/><br/>
 
           <h4>Further reading</h4>
-          <p>What is commign in the next releases</p>
+          <p>What is coming in the next releases</p>
 
         </div>
       </div>

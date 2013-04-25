@@ -71,17 +71,23 @@
         #footer-text{
           text-align: center;
         }
+
+        #howItWorkDetails{
+            display: none;
+        }
     </style>
 
   <!-- Javascript -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/uCracker.js"></script>
 
 </head>
 <body>
   <a href="https://github.com/farolfo/uCracker" target="_blank">
-    <img class="forkmeOnGithub" src="img/forkme.png" alt="forkmeOnGithub"/>
+    <img class="forkmeOnGithub" src="img/forkmewithgit.png" alt="forkmeOnGithub"/>
   </a>
 	<div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner" style="opacity: 0.8">
@@ -99,7 +105,6 @@
               <li><a href="#downloads">Downloads</a></li>
               <li><a href="#howItWorks">How it works?</a></li>
               <li><a href="#installation">Installation</a></li>
-              <li><a href="#execution">Execution</a></li>
               <li><a href="#whyDidIDoThis">Why did I do this?</a></li>
               <li><a href="#inTheNearFuture">In the near future...</a></li>
               <li><a href="#developers">Developers</a></li>
@@ -199,14 +204,39 @@
           <hr id="howItWorks"><br/><br/>
 
           <h4>How it works?</h4>
-          <p>This is a very simple explication of how the uCracker works. If you want to know more about it, click below.</p>
+          <p>This is a very simple explication of how the uCracker works. If you want to know more about it, click below  to see the <a>detailed explication</a></p>
           <p>Imagine a very big room, where there is one person on each corner of the room, and they want to send some messages to each other but the only way to do it it's by screaming the message.
           If they want to keep confidentiality into their messages, the won't scream their message just as it is, they will encrypt it in some way, because every other person in the same room will
           listen everything they said.</p>
-          <p>The same thing happens in computer networks. Each person it's a computer, and the room it's the network itself. </p>
+          <p>The same thing happens in computer networks. Each person it's a computer, and the room it's the network itself. And the analogy goes on, because <strong>a computer can listen to what other computer says</strong>, as long as they are on
+          the same network, as you can see in this image.</p>
 
-          <h6><a href="">Show detailed explication</a></h6>
-          <div></div>
+            IMAGE OF SNIFFING
+
+          <p>So the problem here relies on <strong>how does a computer listen to another?</strong>. Here comes the concept of <a><strong>sniffing</strong></a>. To sniff is to listen to some
+          determined interface on my computer(that's where the messages are being screamed) and not only to listen to the messages that come to me, but listen to them all. (Remember the
+              analogy with the room, as you are on the same room you can listen to all that happens there). To set an interface to listen this way, is called listening in <a>promiscuous mode</a>.</p>
+
+          <p>So how to sniff? There are many ways. You could use <a>wireshark</a> or <a>tcpdump</a>, the first one has got a more "user-friendly" interface and the other one does it in command line.
+          Or you could do an application that uses some library for sniffing, and analyze your packets as you like, like this application does.</p>
+
+          <p>uCracker uses a library called jpcap, which is a wrapper for Java of the library that actually sniffs, the libcap library.</p>
+
+          <p>So we have now an application that is able to listen to every messages on the room. The only thing to do it's to add some logic to recognize those messages that has been screamed just as they are,
+          this is without any encryption, parse the ids and passwords, and display it to you.</p>
+
+          <p>If you want to know more about this implementation, please click below.</p>
+
+          <h6><a onclick="showHowItWoekDetails()">Show detailed explication (<strong>Developers only</strong>)</a></h6>
+          <div id="howItWorkDetails">
+            As we have mentioned before, we will have an architecture for the application like this
+
+              IMAGE OF ARCHITECUTRE
+
+            So we will only interact with the jpcap api, by using a class named <code>Sniffer</code>.
+          </div>
+          <h6><a onclick="hideHowItWorkDetails()">Hide detailed explication</a></h6>
+
           <hr id="installation"><br/><br/>
 
           <h4>Installation</h4>
@@ -224,14 +254,13 @@
               </div>
             </div>
           </div>
-          <hr id="execution"><br/><br/>
-
-          <h4>Execution</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
           <hr id="whyDidIDoThis"><br/><br/>
 
 		      <h4>Why did I do this?</h4>
-          <p>What is commign in the next releases</p>
+          <p>My main goal here is to highlight two things:</p>
+              CHANGE PERIODICALLY your passwords in your accounts.
+              DON'T REPEAT your passwords between your accounts.
+          <p>There are many leaks and bugs in the secutiry systems of many applications, such as passing passwords as plain text, and you'll have a better result if you have some conciderations each both.</p>
           <hr id="inTheNearFuture"><br/><br/>
 
           <h4>In the near future...</h4>

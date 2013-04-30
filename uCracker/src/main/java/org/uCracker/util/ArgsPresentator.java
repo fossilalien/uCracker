@@ -1,4 +1,4 @@
-package org.app.util;
+package org.uCracker.util;
 
 public interface ArgsPresentator {
 	public void init();

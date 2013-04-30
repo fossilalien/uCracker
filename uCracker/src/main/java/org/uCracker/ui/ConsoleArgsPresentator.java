@@ -1,6 +1,6 @@
-package org.app.ui;
+package org.uCracker.ui;
 
-import org.app.util.ArgsPresentator;
+import org.uCracker.util.ArgsPresentator;
 
 public class ConsoleArgsPresentator implements ArgsPresentator{
 

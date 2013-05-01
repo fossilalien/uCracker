@@ -1,5 +1,8 @@
 package org.uCracker;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import net.sourceforge.jpcap.capture.CaptureDeviceNotFoundException;
 import net.sourceforge.jpcap.capture.CaptureDeviceOpenException;
 import net.sourceforge.jpcap.capture.CapturePacketException;
@@ -14,9 +17,9 @@ import org.uCracker.util.ArgsPresentator;
 import org.uCracker.util.CommandLineParameters;
 import org.uCracker.util.Sniffer;
 
-public class IOLHacker {
+public class uCracker {
 	
-	private static final Logger LOG = Logger.getLogger(IOLHacker.class);
+	private static final Logger LOG = Logger.getLogger(uCracker.class);
 	private static ArgsPresentator argsPresentator;
 	
 	public static void main(String[] args) {
@@ -31,7 +34,19 @@ public class IOLHacker {
 
 		try{
 			Sniffer sniffer = new Sniffer(argsPresentator);
+			
+			List<uCrackerPacketListener> packetListeners = JAXBPacketListener.load();
+			List<String> hosts = new LinkedList<String>();
+			
+			for(uCrackerPacketListener pl : packetListeners){
+				sniffer.addPacketListener(pl.getPacketListener());
+				hosts.add(pl.getHost());
+			}
+			
+			sniffer.addHostFilters(hosts);
+			
 			argsPresentator.init();
+			
 			sniffer.sniff(clp.getInterface());
 		} catch (CaptureDeviceNotFoundException i){
 			LOG.error("There are no interfaces or devices detected for sniffing.");

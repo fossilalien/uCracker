@@ -1,4 +1,4 @@
-package org.uCracker;
+package org.uCracker.listeners;
 
 import java.net.URLDecoder;
 import java.util.regex.Pattern;
@@ -11,15 +11,15 @@ import org.apache.log4j.Logger;
 import org.uCracker.util.ArgsPresentator;
 
 
-public class IOLPacketListener implements PacketListener{
+public class ITBAPacketListener implements PacketListener{
 	
-	private static final Logger LOG = Logger.getLogger(IOLPacketListener.class);
+	private static final Logger LOG = Logger.getLogger(ITBAPacketListener.class);
 
 	private static final String IOL_POST_DATA_PATTERN = "dni=.*&pwd=.*(&.*)*";
 	
 	private ArgsPresentator argsPresentator;
 	
-	public IOLPacketListener(ArgsPresentator argsPresentator) {
+	public ITBAPacketListener(ArgsPresentator argsPresentator) {
 		this.argsPresentator = argsPresentator;
 	}
 

@@ -1,5 +1,8 @@
 package org.uCracker.util;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import net.sourceforge.jpcap.capture.CaptureDeviceNotFoundException;
 import net.sourceforge.jpcap.capture.CaptureDeviceOpenException;
 import net.sourceforge.jpcap.capture.CapturePacketException;
@@ -8,37 +11,43 @@ import net.sourceforge.jpcap.capture.PacketCapture;
 import net.sourceforge.jpcap.capture.PacketListener;
 
 import org.apache.log4j.Logger;
-import org.uCracker.IOLPacketListener;
 
 public class Sniffer {
-
-	/* Mr. developer:
-	 * 
-	 *  If you want to use this class in your app, you should modify the following variables if needed:
-	 *  
-	 *  > HOST : Filter your host of interest.
-	 *  > Implement a PacketListener, and initailizated in the Sniffer constructor. This will analyze each packet the sniffer catches.
-	 *  > In method 'sniff(String inet)', modify the 'snaplen' and 'timeout' parameters of the jpcap.open(...) call as you need them.
-	 *  
-	 *  */
 	
 	private static final Logger LOG = Logger.getLogger(Sniffer.class);
 		
 	private static final int INFINITE = -1;
 	private static final int PACKET_COUNT = INFINITE;
 	
-	private static final String HOST = "itba.edu.ar";
-	private static final String FILTER = "host " + HOST + " and ip and tcp and port 80";
+	private static String filter = "ip and tcp and port 80";
 
 	PacketCapture pcap;
-	PacketListener packetListener;
+	List<PacketListener> packetListeners;
 	
 	public Sniffer(ArgsPresentator argsPresentator){
 		pcap = new PacketCapture();
-		packetListener = new IOLPacketListener(argsPresentator);
+		packetListeners = new LinkedList<PacketListener>();		
 	}
-
-	public void setInterface(String inet) throws CaptureDeviceNotFoundException {
+	
+	public void addHostFilters(List<String> hosts){
+		StringBuffer sb = new StringBuffer();
+		sb.append(filter);
+		sb.append(" and ( ");
+		int i = 0;
+		for(String host : hosts){
+			sb.append("host ");
+			sb.append(host);
+			if( i != hosts.size()-1 ){
+				sb.append(" or ");
+			}
+			i++;
+		}
+		sb.append(" )");
+		filter = sb.toString();
+	}
+	
+	public void addPacketListener(PacketListener packetListener){
+		pcap.addPacketListener(packetListener);
 	}
 
 	/***
@@ -57,8 +66,10 @@ public class Sniffer {
 		// Initialize jpcap
 		LOG.trace("Using device '" + inet + "'");
 		pcap.open(inet, 4000, true, 5000);
-		pcap.setFilter(FILTER, true);
-		pcap.addPacketListener(packetListener);
+		pcap.setFilter(filter, true);
+		for(PacketListener packetListener : packetListeners){
+			pcap.addPacketListener(packetListener);
+		}
 		LOG.trace("Capturing packets...");
 		pcap.capture(PACKET_COUNT);
 	}

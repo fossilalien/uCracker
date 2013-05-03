@@ -15,7 +15,9 @@ import org.apache.log4j.PatternLayout;
 import org.uCracker.ui.ConsoleArgsPresentator;
 import org.uCracker.util.ArgsPresentator;
 import org.uCracker.util.CommandLineParameters;
+import org.uCracker.util.JAXBPacketListener;
 import org.uCracker.util.Sniffer;
+import org.uCracker.util.uCrackerPacketListener;
 
 public class uCracker {
 	
@@ -48,6 +50,7 @@ public class uCracker {
 			argsPresentator.init();
 			
 			sniffer.sniff(clp.getInterface());
+			
 		} catch (CaptureDeviceNotFoundException i){
 			LOG.error("There are no interfaces or devices detected for sniffing.");
 		} catch (CaptureDeviceOpenException e) {

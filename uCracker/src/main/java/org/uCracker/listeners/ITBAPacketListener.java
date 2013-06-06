@@ -3,15 +3,14 @@ package org.uCracker.listeners;
 import java.net.URLDecoder;
 import java.util.regex.Pattern;
 
-import net.sourceforge.jpcap.capture.PacketListener;
 import net.sourceforge.jpcap.net.Packet;
 import net.sourceforge.jpcap.net.TCPPacket;
 
 import org.apache.log4j.Logger;
 import org.uCracker.util.ArgsPresentator;
+import org.uCracker.util.uCrackerPacketListener;
 
-
-public class ITBAPacketListener implements PacketListener{
+public class ITBAPacketListener implements uCrackerPacketListener{
 	
 	private static final Logger LOG = Logger.getLogger(ITBAPacketListener.class);
 
@@ -25,6 +24,8 @@ public class ITBAPacketListener implements PacketListener{
 
 	public void packetArrived(Packet packet) {
 		try {
+			//TODO check host!
+			
 			// only handle TCP packets
 			if (packet instanceof TCPPacket) {
 				TCPPacket tcpPacket = (TCPPacket) packet;
@@ -49,5 +50,9 @@ public class ITBAPacketListener implements PacketListener{
 		} catch (Exception e) {
 			LOG.error("An error has occurred while analazing a packet.");
 		}
+	}
+
+	public String getHost() {
+		return "itba.edu.ar";
 	}
 }

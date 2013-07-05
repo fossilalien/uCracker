@@ -1,7 +1,7 @@
 ![uCracker](/utils/img/uCracker-logo.png)
 ==========
 
-A very simple java programm that [sniffs](http://en.wikipedia.org/wiki/Packet_analyzer) the network and displays displays passwords of many sites that deliver their data without any encoding. 
+A very simple java programm that [sniffs](http://en.wikipedia.org/wiki/Packet_analyzer) the network and displays passwords of many sites that deliver their data without any encoding. 
 
 This implementation uses the [<code>jpcap</code>](http://sourceforge.net/projects/jpcap/) lib, provided by [SourceForce](http://sourceforge.net/). 
 Besides, <code>jpcap</code> uses the [<code>libpcap</code>](http://www.tcpdump.org/) library, that must be installed and well configured to work.

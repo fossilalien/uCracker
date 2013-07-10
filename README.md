@@ -3,7 +3,7 @@
 
 A very simple java programm that [sniffs](http://en.wikipedia.org/wiki/Packet_analyzer) the network and displays passwords of many sites that deliver their data without any encoding. 
 
-The only thing you have to do is specify what do you want to sniff, by writting a VERY SIMPLE parser (a java class) and run this application in your computer. Later on you will see the credentials that are delivered in the network without encoding.
+The only thing you have to do is specify what do you want to sniff, by writting a VERY SIMPLE listener (a java class that parse a string) and run this application in your computer. Later on you will see the credentials that are delivered in the network without encoding.
 
 This implementation uses the [<code>jpcap</code>](http://sourceforge.net/projects/jpcap/) lib, provided by [SourceForce](http://sourceforge.net/). 
 Besides, <code>jpcap</code> uses the [<code>libpcap</code>](http://www.tcpdump.org/) library, that must be installed and well configured to work.
@@ -24,7 +24,7 @@ Build and run
 In order to build the project you have to run the command
 
 	$ mvn clean
-	$ mvn compile
+	$ mvn package
 	
 And the executable .jar will be placed in the folder <code>target/</code>.
 

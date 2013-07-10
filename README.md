@@ -35,7 +35,7 @@ In order to run .jar application, you have to install the libraries
 
 Then you have to run
 
-	$ java -jar target/uCracker.jar -en __interface__
+	$ java -jar target/uCracker.jar -i __interface__
 	
 Now you only have to wait, and you will see all the credentials that your uCracker application has registered.
 

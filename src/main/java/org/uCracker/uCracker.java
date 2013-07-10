@@ -12,7 +12,7 @@ import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
-import org.uCracker.listeners.ITBAPacketListener;
+import org.uCracker.listeners.ExamplePacketListener;
 import org.uCracker.ui.ConsoleArgsPresentator;
 import org.uCracker.util.ArgsPresentator;
 import org.uCracker.util.CommandLineParameters;
@@ -30,16 +30,14 @@ public class uCracker {
 		clp.load(args);
 		Logger.getRootLogger().setLevel(clp.getLoggingLevel());
 		
-		if(clp.getFile() == null){
-			argsPresentator = new ConsoleArgsPresentator();
-		}
+		argsPresentator = new ConsoleArgsPresentator();
 
 		try{
 			Sniffer sniffer = new Sniffer(argsPresentator);
 			
 			//List<uCrackerPacketListener> packetListeners = JAXBPacketListener.load();
 			List<uCrackerPacketListener> packetListeners = new LinkedList<uCrackerPacketListener>();
-			packetListeners.add(new ITBAPacketListener(argsPresentator));
+			packetListeners.add(new ExamplePacketListener(argsPresentator));
 			
 			List<String> hosts = new LinkedList<String>();
 			

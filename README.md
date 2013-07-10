@@ -18,6 +18,27 @@ The project is structured by branchs in this way:
 * <code>Release\_\*</code>: Contains the code of the application released, this is, a stable version. (**The first one hasn't been released yet.**)
 * <code>gh-pages</code>: Contains the code of the web UI deployed with GitHub Pages in http://farolfo.github.io/uCracker. (__Still under development.__)
 
+Build and run
+-------------
+
+In order to build the project you have to run the command
+
+	$ mvn clean
+	$ mvn compile
+	
+And the executable .jar will be placed in the folder <code>target/</code>.
+
+In order to run .jar application, you have to install the libraries
+
+* [<code>libpcap</code>](http://www.tcpdump.org/): Library that sniffs the network.
+* [<code>jpcap</code>](http://sourceforge.net/projects/jpcap/): Java wrapper for the <code>libpcap</code> library.
+
+Then you have to run
+
+	$ java -jar target/uCracker.jar -en __interface__
+	
+Now you only have to wait, and you will see all the credentials that your uCracker application has registered.
+
 
 Application overview
 --------------------

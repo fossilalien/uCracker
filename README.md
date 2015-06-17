@@ -1,8 +1,6 @@
 ![uCracker](/utils/img/uCracker-logo.png)
 ==========
 
-STILL UNDER DEVELOPMENT
-
 A very simple java programm that [sniffs](http://en.wikipedia.org/wiki/Packet_analyzer) the network and displays passwords of many sites that deliver their data without any encoding. 
 
 The only thing you have to do is specify what do you want to sniff, by writting a VERY SIMPLE listener (a java class that parse a string) and run this application in your computer. Later on you will see the credentials that are delivered in the network without encoding.
